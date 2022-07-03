@@ -12,6 +12,7 @@ export default function Web() {
         <div className="flex space-x-3 items-center">
           <h1 className="font-bold text-lg">Web</h1>
           <Button />
+          {/*<button className="btn btn-primary">yes</button>*/}
         </div>
       </div>
     </>
