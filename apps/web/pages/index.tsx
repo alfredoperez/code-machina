@@ -8,9 +8,9 @@ export default function Web() {
         <title>Web App</title>
       </Head>
 
-      <div className="flex w-full min-h-screen justify-center items-center">
-        <div className="flex space-x-3 items-center">
-          <h1 className="font-bold text-lg">Web</h1>
+      <div className="flex min-h-screen w-full items-center justify-center">
+        <div className="flex items-center space-x-3">
+          <h1 className="text-lg font-bold">Web</h1>
           <Button />
           {/*<button className="btn btn-primary">yes</button>*/}
         </div>
