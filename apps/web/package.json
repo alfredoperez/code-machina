@@ -3,13 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn gen:contentlayer && next dev",
+    "build": "yarn gen:contentlayer && next build",
+    "gen:contentlayer": "contentlayer build --config ./apps/web/contentlayer.config.ts --verbose",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "contentlayer": "^0.2.6",
     "next": "12.0.3",
+    "next-contentlayer": "^0.2.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "ui": "*"

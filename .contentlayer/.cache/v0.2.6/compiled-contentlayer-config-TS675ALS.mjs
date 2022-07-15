@@ -1,0 +1,34 @@
+// apps/web/contentlayer.config.ts
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+var Doc = defineDocumentType(() => ({
+  name: "doc",
+  filePathPattern: `**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      description: "The title of the post",
+      required: true
+    },
+    date: {
+      type: "date",
+      description: "The date of the post",
+      required: true
+    }
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (post) => `/docs/${post._raw.flattenedPath}`
+    }
+  }
+}));
+var contentlayer_config_default = makeSource({
+  contentDirPath: "docs",
+  documentTypes: [Doc]
+});
+export {
+  Doc,
+  contentlayer_config_default as default
+};
+//# sourceMappingURL=compiled-contentlayer-config-TS675ALS.mjs.map
