@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# IDEs
+.idea
+
 # database
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
