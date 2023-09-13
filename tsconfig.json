@@ -18,7 +18,9 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "@/components/*": ["src/components/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
