@@ -66,8 +66,8 @@ function createSearchIndex(allBlogs: any[]) {
   writeFileSync(`public/search.json`, JSON.stringify(allCoreContent(sortPosts(allBlogs))))
 }
 
-export const Blog = defineDocumentType(() => ({
-  name: 'Blog',
+export const Docs = defineDocumentType(() => ({
+  name: 'Docs',
   filePathPattern: 'docs/**/*.mdx',
   contentType: 'mdx',
   fields: {
@@ -89,7 +89,7 @@ export const Blog = defineDocumentType(() => ({
       type: 'json',
       resolve: (doc) => ({
         '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
+        '@type': 'DocumentationFile',
         headline: doc.title,
         datePublished: doc.date,
         dateModified: doc.lastmod || doc.date,
@@ -122,7 +122,7 @@ export const Authors = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  documentTypes: [Docs, Authors],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [

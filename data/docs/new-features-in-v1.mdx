@@ -13,7 +13,7 @@ bibliography: references-data.bib
 
 A post on the new features introduced in v1.0. New features:
 
-<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+<TOCInline toc={props.toc} exclude="Overview" toHeading={2}/>
 
 First load JS decreased from 43kB to 39kB despite all the new features added! [^1]
 
@@ -94,7 +94,7 @@ Here's the full TOC rendered in a disclosure element.
 <TOCInline toc={props.toc} asDisclosure />
 ```
 
-<TOCInline toc={props.toc} asDisclosure />
+<TOCInline toc={props.toc} asDisclosure/>
 
 ## Layouts
 
@@ -352,14 +352,7 @@ Introduced in v1.1.3, the newsletter component gives you an easy way to build an
 To use it, specify the provider which you are using in the config file and add the necessary environment variables to the `.env` file.
 For more information on the required variables, check out `.env.sample.`
 
-Two components are exported, a default `NewsletterForm` and a `BlogNewsletterForm` component, which is also passed in as an MDX component
-and can be used in a blog post:
 
-```jsx
-<BlogNewsletterForm title="Like what you are reading?" />
-```
-
-<BlogNewsletterForm title="Like what you are reading?" />
 
 The component relies on nextjs's [API routes](https://nextjs.org/docs/api-routes/introduction) which requires a server-side instance of nextjs to be setup
 and is not compatible with a 100% static site export. Users should either self-host or use a compatible platform like Vercel or Netlify which supports this functionality.
@@ -384,8 +377,8 @@ Multiple citations [see @Nash1950; @Nash1951, page 50]
 
 is rendered to the following:
 
-Standard citation [@Nash1950]  
-In-text citations e.g. @Nash1951  
+Standard citation [@Nash1950]
+In-text citations e.g. @Nash1951
 Multiple citations [see @Nash1950; @Nash1951, page 50]
 
 **References:**
@@ -401,11 +394,7 @@ See [rehype-citation readme](https://github.com/timlrx/rehype-citation) for more
 
 Google font has been replaced with self-hosted font from [Fontsource](https://fontsource.org/). This gives the following [advantages](https://fontsource.org/docs/introduction):
 
-> Self-hosting brings significant performance gains as loading fonts from hosted services, such as Google Fonts, lead to an extra (render blocking) network request. To provide perspective, for simple websites it has been seen to double visual load times.
->
-> Fonts remain version locked. Google often pushes updates to their fonts without notice, which may interfere with your live production projects. Manage your fonts like any other NPM dependency.
->
-> Commit to privacy. Google does track the usage of their fonts and for those who are extremely privacy concerned, self-hosting is an alternative.
+> Self-hosting brings significant performance gains as loading fonts from hosted services, such as Google Fonts, lead to an extra (render blocking) network request. To provide perspective, for simple websites it has been seen to double visual load times.Fonts remain version locked. Google often pushes updates to their fonts without notice, which may interfere with your live production projects. Manage your fonts like any other NPM dependency.Commit to privacy. Google does track the usage of their fonts and for those who are extremely privacy concerned, self-hosting is an alternative.
 
 This leads to a smaller font bundle and a 0.1s faster load time ([webpagetest comparison](https://www.webpagetest.org/video/compare.php?tests=220201_AiDcFH_f68a69b758454dd52d8e67493fdef7da,220201_BiDcMC_bf2d53f14483814ba61e794311dfa771)).
 

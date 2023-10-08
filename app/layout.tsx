@@ -10,6 +10,7 @@ import siteMetadata from '@/data/siteMetadata'
 // import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 import { Layout } from '@/components/Layout'
+import SectionContainer from '@/components/SectionContainer'
 // import { NextUIProvider } from '@nextui-org/react'
 
 const space_grotesk = Space_Grotesk({
@@ -78,16 +79,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Layout>
           {/*<NextUIProvider>*/}
           {/*<ThemeProviders>*/}
+
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-          {/*<SectionContainer>*/}
-          <div className="flex h-screen flex-col justify-between font-sans">
-            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-              {/*<Header />*/}
-              <main className="mb-auto">{children}</main>
-            </SearchProvider>
-            {/*<Footer />*/}
-          </div>
-          {/*</SectionContainer>*/}
+          <SectionContainer>
+            <div className="flex h-screen flex-col justify-between font-sans">
+              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                {/*<Header />*/}
+                <main className="mb-auto">
+                  <h1 className="">Layout File</h1>
+                  {children}
+                </main>
+              </SearchProvider>
+              {/*<Footer />*/}
+            </div>
+          </SectionContainer>
           {/*</ThemeProviders>*/}
           {/*</NextUIProvider>*/}
         </Layout>

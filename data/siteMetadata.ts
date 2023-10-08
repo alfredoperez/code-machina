@@ -3,8 +3,10 @@ const siteMetadata = {
   locale: 'en',
   language: 'en',
   siteUrl: 'https://nextjs-contentlayer-starter.vercel.app',
+  siteRepo: 'github.com/your-org/your-repo',
   title: 'Next.js Contentlayer Starter',
   socialBanner: '/social.png',
+  author: 'Your Name',
   // Features
   analytics: {
     // If you want to use an analytics provider you have to add it to the
