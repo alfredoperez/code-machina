@@ -1,14 +1,6 @@
-const config = {
-  plugins:  {
-    'postcss-import': {},
-    'postcss-focus-visible': {
-      replaceWith: '[data-focus-visible-added]',
-
-    },
+module.exports = {
+  plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
-};
-
-module.exports = config;
-
+}

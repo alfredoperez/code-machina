@@ -2,9 +2,20 @@ const siteMetadata = {
   description: 'A starter template to build amazing static websites with Next.js and Contentlayer',
   locale: 'en',
   language: 'en',
+  headerTitle: 'Code Machina',
   siteUrl: 'https://nextjs-contentlayer-starter.vercel.app',
+  siteRepo: 'github.com/your-org/your-repo',
   title: 'Next.js Contentlayer Starter',
   socialBanner: '/social.png',
+  mastodon: 'https://mastodon.social/@mastodonuser',
+  email: 'address@yoursite.com',
+  github: 'https://github.com',
+  twitter: 'https://twitter.com/Twitter',
+  facebook: 'https://facebook.com',
+  youtube: 'https://youtube.com',
+  linkedin: 'https://www.linkedin.com',
+  theme: 'system', // system, dark or light
+  author: 'Your Name',
   // Features
   analytics: {
     // If you want to use an analytics provider you have to add it to the
@@ -30,14 +41,6 @@ const siteMetadata = {
     kbarConfig: {
       searchDocumentsPath: 'search.json', // path to load documents to search
     },
-    // provider: 'algolia',
-    // algoliaConfig: {
-    //   // The application ID provided by Algolia
-    //   appId: 'R2IYF7ETH7',
-    //   // Public API key: it is safe to commit it
-    //   apiKey: '599cec31baffa4868cae4e79f180729b',
-    //   indexName: 'docsearch',
-    // },
   },
 }
 export default siteMetadata

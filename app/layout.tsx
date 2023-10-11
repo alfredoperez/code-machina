@@ -1,16 +1,15 @@
-import '../css/tailwind.css'
-// import 'pliny/search/algolia.css'
+import 'css/tailwind.css'
+import 'pliny/search/algolia.css'
+
 import { Space_Grotesk } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
-import { SearchConfig, SearchProvider } from 'pliny/search'
-// import Header from '@/components/Header'
-// import SectionContainer from '@/components/SectionContainer'
-// import Footer from '@/components/Footer'
+import { SearchProvider, SearchConfig } from 'pliny/search'
+import Header from '@/components/Header'
+import SectionContainer from '@/components/SectionContainer'
+import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
-// import { ThemeProviders } from './theme-providers'
+import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
-import { Layout } from '@/components/Layout'
-// import { NextUIProvider } from '@nextui-org/react'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -75,22 +74,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <body className="bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
-        <Layout>
-          {/*<NextUIProvider>*/}
-          {/*<ThemeProviders>*/}
+        <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-          {/*<SectionContainer>*/}
-          <div className="flex h-screen flex-col justify-between font-sans">
-            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-              {/*<Header />*/}
-              <main className="mb-auto">{children}</main>
-            </SearchProvider>
-            {/*<Footer />*/}
-          </div>
-          {/*</SectionContainer>*/}
-          {/*</ThemeProviders>*/}
-          {/*</NextUIProvider>*/}
-        </Layout>
+          <SectionContainer>
+            <div className="flex h-screen flex-col justify-between font-sans">
+              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                <Header />
+                <main className="mb-auto">{children}</main>
+              </SearchProvider>
+              <Footer />
+            </div>
+          </SectionContainer>
+        </ThemeProviders>
       </body>
     </html>
   )

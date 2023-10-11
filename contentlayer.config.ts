@@ -1,7 +1,7 @@
-import { type ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
-// import GithubSlugger from 'github-slugger'
+import GithubSlugger from 'github-slugger'
 import path from 'path'
 // Remark packages
 import remarkGfm from 'remark-gfm'
@@ -19,6 +19,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
+import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 
 const root = process.cwd()
@@ -49,8 +50,7 @@ function createTagCount(allBlogs: any[]) {
   allBlogs.forEach((file) => {
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag: any) => {
-        //   const formattedTag = GithubSlugger.slug(tag)
-        const formattedTag = tag
+        const formattedTag = GithubSlugger.slug(tag)
         if (formattedTag in tagCount) {
           tagCount[formattedTag] += 1
         } else {
@@ -59,11 +59,20 @@ function createTagCount(allBlogs: any[]) {
       })
     }
   })
-  writeFileSync('./src/tag-data.json', JSON.stringify(tagCount))
+  writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
 }
 
 function createSearchIndex(allBlogs: any[]) {
-  writeFileSync(`public/search.json`, JSON.stringify(allCoreContent(sortPosts(allBlogs))))
+  if (
+    siteMetadata?.search?.provider === 'kbar' &&
+    siteMetadata.search.kbarConfig.searchDocumentsPath
+  ) {
+    writeFileSync(
+      `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
+      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
+    )
+    console.log('Local search index generated...')
+  }
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -77,7 +86,7 @@ export const Blog = defineDocumentType(() => ({
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
     summary: { type: 'string' },
-    images: { type: 'list', of: { type: 'string' } },
+    images: { type: 'json' },
     authors: { type: 'list', of: { type: 'string' } },
     layout: { type: 'string' },
     bibliography: { type: 'string' },
@@ -94,9 +103,8 @@ export const Blog = defineDocumentType(() => ({
         datePublished: doc.date,
         dateModified: doc.lastmod || doc.date,
         description: doc.summary,
-        image: '', //doc.images ? doc.images[0] : siteMetadata.socialBanner,
-        url: '', // `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
-        author: doc.authors,
+        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
       }),
     },
   },
@@ -142,8 +150,8 @@ export default makeSource({
     ],
   },
   onSuccess: async (importData) => {
-    const { allDocuments } = await importData()
-    createTagCount(allDocuments)
-    createSearchIndex(allDocuments)
+    const { allBlogs } = await importData()
+    createTagCount(allBlogs)
+    createSearchIndex(allBlogs)
   },
 })
